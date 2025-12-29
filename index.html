@@ -71,15 +71,37 @@
       width: 220px;
     }
 
+    /* PLATFORM LOGOS */
     .platforms {
-      margin-top: 30px;
+      margin-top: 36px;
       text-align: center;
     }
 
-    .platforms label {
+    .platforms-title {
       font-size: 14px;
-      margin-right: 18px;
+      opacity: 0.85;
+      margin-bottom: 14px;
+    }
+
+    .platform-list {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .platform {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       cursor: pointer;
+    }
+
+    .platform img {
+      height: 28px;
+      background: white;
+      padding: 6px 10px;
+      border-radius: 8px;
     }
 
     button {
@@ -91,7 +113,7 @@
       background: #3f6df6;
       color: white;
       cursor: pointer;
-      margin-top: 30px;
+      margin-top: 36px;
     }
 
     button:hover {
@@ -159,13 +181,26 @@
     </div>
 
     <div class="platforms">
-      <div style="margin-bottom: 10px; opacity: 0.85;">
+      <div class="platforms-title">
         Delivery platforms used (optional)
       </div>
-      <label><input type="checkbox"> Uber Eats</label>
-      <label><input type="checkbox"> Deliveroo</label>
-      <label><input type="checkbox"> Just Eat</label>
-      <label><input type="checkbox"> Other</label>
+
+      <div class="platform-list">
+        <label class="platform">
+          <input type="checkbox">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Uber_Eats_2020_logo.svg" alt="Uber Eats">
+        </label>
+
+        <label class="platform">
+          <input type="checkbox">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Deliveroo_logo.svg" alt="Deliveroo">
+        </label>
+
+        <label class="platform">
+          <input type="checkbox">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Just_Eat_Takeaway.com_logo.svg" alt="Just Eat">
+        </label>
+      </div>
     </div>
 
     <button onclick="calculate()">Calculate cost</button>
@@ -202,7 +237,7 @@
     <a href="https://2bv4o0.share-eu1.hsforms.com/2Qx1AGjvpRbGlg81NbZSLzw"
        target="_blank"
        style="text-decoration:none;">
-      <button class="secondary">Get a FREE recovery audit</button>
+      <button class="secondary">Get a free recovery audit</button>
     </a>
 
     <div class="disclaimer">
@@ -223,35 +258,23 @@
 
     const DAYS = 365;
 
-    // Time assumptions
     const IMAGE_SECONDS_PER_ORDER = 4;
     const DISPUTE_MINUTES = 5;
-
-    // Fully loaded UK hourly cost
     const HOURLY_COST = 14.50;
 
     const annualOrders = ordersPerDay * DAYS;
     const annualDisputes = disputesPerDay * DAYS;
 
-    const imageHours =
-      (annualOrders * IMAGE_SECONDS_PER_ORDER) / 3600;
-
-    const disputeHours =
-      (annualDisputes * DISPUTE_MINUTES) / 60;
+    const imageHours = (annualOrders * IMAGE_SECONDS_PER_ORDER) / 3600;
+    const disputeHours = (annualDisputes * DISPUTE_MINUTES) / 60;
 
     const totalHours = imageHours + disputeHours;
-
     const annualCost = totalHours * HOURLY_COST;
     const monthlyCost = annualCost / 12;
 
-    document.getElementById("monthlyCost").innerText =
-      "£" + monthlyCost.toFixed(0);
-
-    document.getElementById("yearlyCost").innerText =
-      "£" + annualCost.toFixed(0);
-
-    document.getElementById("annualHours").innerText =
-      totalHours.toFixed(0);
+    document.getElementById("monthlyCost").innerText = "£" + monthlyCost.toFixed(0);
+    document.getElementById("yearlyCost").innerText = "£" + annualCost.toFixed(0);
+    document.getElementById("annualHours").innerText = totalHours.toFixed(0);
 
     document.getElementById("inputState").classList.add("hidden");
     document.getElementById("resultState").classList.remove("hidden");
@@ -265,4 +288,3 @@
 
 </body>
 </html>
-
